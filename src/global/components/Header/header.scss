@@ -1,0 +1,71 @@
+@use "../../styles/colors.scss" as colors;
+
+.header {
+	padding: 16px 0px;
+	width: 100%;
+	position: fixed;
+	top: 0;
+
+	background-color: colors.$background_main;
+
+	&__contents {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: baseline;
+
+		.header__logo {
+			display: block;
+			height: 100%;
+			width: 100%;
+			min-height: 32px;
+			min-width: 128px;
+			max-height: 48px;
+			max-width: 192px;
+			margin-bottom: 24px;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+
+		.header__nav {
+			display: flex;
+			flex-direction: row;
+			align-items: baseline;
+
+			&>* {
+				margin-right: 8px;
+
+				&:first-child {
+					margin-left: -12px;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 720px) {
+	.header {
+		&__contents {
+			flex-wrap: nowrap;
+			flex-direction: row;
+
+			.header__logo {
+				flex-basis: auto;
+				flex-shrink: 1;
+				margin-bottom: 0px;
+			}
+
+			.header__nav>* {
+				&:last-child {
+					margin-right: -12px;
+				}
+
+				&:first-child {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+}
