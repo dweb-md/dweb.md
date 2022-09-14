@@ -1,6 +1,3 @@
-import { GlobalContext, defaultGlobalContext } from "./GlobalContext";
+import { GlobalContext, defaultGlobalContext } from './GlobalContext'
 
-export {
-	GlobalContext,
-	defaultGlobalContext
-}
+export { GlobalContext, defaultGlobalContext }

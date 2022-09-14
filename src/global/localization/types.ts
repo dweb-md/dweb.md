@@ -1,3 +1,3 @@
 export enum Language {
-	ro = 'ro'
+  ro = 'ro'
 }

@@ -1,16 +1,17 @@
-import React from 'react';
-import { Header } from '../../global/components';
-import { LandingSection } from './sections';
+import { Header } from '../../global/components'
+import { LandingSection } from './sections'
 
-import './landing_page.scss';
+import './landing_page.scss'
 
 function LandingPage() {
-	return (<>
-		<Header />
-		<div className="body">
-			<LandingSection />
-		</div>
-	</>)
+  return (
+    <>
+      <Header />
+      <div className="body">
+        <LandingSection />
+      </div>
+    </>
+  )
 }
 
-export default LandingPage;
+export default LandingPage

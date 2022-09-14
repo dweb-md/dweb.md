@@ -1,5 +1,3 @@
-import LandingSection from "./LandingSection";
+import LandingSection from './LandingSection'
 
-export {
-	LandingSection
-};
+export { LandingSection }
