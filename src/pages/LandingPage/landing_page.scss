@@ -1,20 +1,7 @@
-@use "../../global/styles/colors.scss" as colors;
+@use '../../global/styles/colors.scss' as colors;
 
 .body {
-	padding-top: 160px;
-	background-color: colors.$background_main;
-	height: 100vh;
-}
-
-@media only screen and (min-width: 720px) {
-	.body {
-		padding-top: 100px;
-	}
-}
-
-@media only screen and (min-width: 720px) and (min-height: 400px) {
-	.body {
-		min-height: 100vh;
-		height: auto;
-	}
+  background-color: colors.$background_main;
+  position: relative;
+  min-height: 100vh;
 }

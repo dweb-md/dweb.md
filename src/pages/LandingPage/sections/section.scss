@@ -1,0 +1,9 @@
+@use '../../../global/styles/colors.scss' as colors;
+@use '../../../global/styles/typography.scss' as typography;
+
+.caption {
+  font-size: typography.$font_size_xxl;
+  color: colors.$accent_color;
+  text-align: center;
+  line-break: loose;
+}

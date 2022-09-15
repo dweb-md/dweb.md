@@ -1,13 +1,22 @@
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+@use '../global/styles/colors.scss' as colors;
+@use '../global/styles/typography.scss' as typography;
 
-	font-family: Arial, Helvetica, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-	min-width: 320px;
-	overflow: hidden;
-	margin: 0 auto;
+  min-width: 320px;
+  margin: 0 auto;
+  background-color: colors.$background_main;
+}
+
+@media only screen and (min-width: 720px) {
+  body {
+    overflow: hidden;
+  }
 }

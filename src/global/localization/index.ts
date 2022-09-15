@@ -1,5 +1,5 @@
 import copy from './copy'
-import { Language } from './types'
+import { Language } from './languages'
 
 const defaultLanguage = Language.ro
 

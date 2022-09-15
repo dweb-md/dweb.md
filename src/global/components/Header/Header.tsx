@@ -1,16 +1,28 @@
 import { useContext } from 'react'
-import { useNavigate } from 'react-router'
 import { GlobalContext } from '../../contexts'
 import Layout from '../Layout/Layout'
 import NavButton from '../NavButton/NavButton'
 
 import './header.scss'
 
-function Header() {
+type HeaderProps = {
+  setActiveSection: React.Dispatch<React.SetStateAction<number>>
+}
+
+// @todo add nav-related elements to a router/ folder
+type Paths = '/' | '/mission' | '/objectives' | '/news'
+
+const pathToSectionMapping = {
+  '/': 0,
+  '/mission': 1,
+  '/objectives': 3,
+  '/news': 5
+}
+
+function Header({ setActiveSection }: HeaderProps) {
   const { copy } = useContext(GlobalContext)
 
-  const navigate = useNavigate()
-  const generateNavigateTo = (to: string) => () => navigate(to)
+  const onClickGoTo = (to: Paths) => () => setActiveSection(pathToSectionMapping[to])
 
   return (
     <div className="header">
@@ -20,13 +32,13 @@ function Header() {
             className="header__logo"
             src="/img/dwebmd_logo.svg"
             alt="logo"
-            onClick={generateNavigateTo('/')}
+            onClick={onClickGoTo('/')}
           />
           <div className="header__nav">
-            <NavButton text={copy.home} onClick={generateNavigateTo('/')} />
-            <NavButton text={copy.mission} onClick={generateNavigateTo('/mission')} />
-            <NavButton text={copy.objectives} onClick={generateNavigateTo('/objectives')} />
-            <NavButton text={copy.news} onClick={generateNavigateTo('/news')} />
+            <NavButton text={copy.home} onClick={onClickGoTo('/')} />
+            <NavButton text={copy.mission} onClick={onClickGoTo('/mission')} />
+            <NavButton text={copy.objectives} onClick={onClickGoTo('/objectives')} />
+            <NavButton text={copy.news} onClick={onClickGoTo('/news')} />
           </div>
         </div>
       </Layout>
