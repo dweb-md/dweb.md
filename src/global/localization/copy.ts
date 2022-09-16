@@ -4,6 +4,13 @@ const copy = {
     mission: 'Misiune',
     objectives: 'Obiective',
     news: 'Noutăți',
+    what_if: 'Ce ar fi dacă...',
+    hypothesis_one: 'Internetul ar fi în controlul utilizatorilor și nu al giganților tech?',
+    hypothesis_two:
+      'Buna funcționare a aplicațiilor nu ar mai depinde de furnizorii de servicii Cloud?',
+    hypothesis_three: 'Securitatea ar sta la baza tutor serviciilor Web?',
+    hypothesis_four: 'Datele utilizatorilor ar fi protejate în mod implicit?',
+    hypothesis_five: 'Serviciile și canalele de comunicare ar fi rezistente la cenzură?',
     mission_title_prefix: 'Misiunea la',
     mission_of_dwebmd:
       'Mobilizarea talentelor și resurselor pentru dezvoltarea Web-ului decentralizat de către Moldoveni pentru Moldoveni',

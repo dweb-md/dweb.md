@@ -1,0 +1,129 @@
+@use '../../../../global/styles/typography.scss' as typography;
+@use '../../../../global/styles/colors.scss' as colors;
+
+.landing-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &__left-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    margin-right: 0;
+
+    .left-col__header {
+      font-size: typography.$font_size_xl;
+      color: colors.$accent_color;
+      margin-bottom: 16px;
+    }
+
+    .left-col__caption {
+      flex-basis: 100%;
+      display: flex;
+      align-items: flex-start;
+
+      font-size: typography.$font_size_xxl;
+      color: colors.$accent_color;
+      max-width: 540px;
+      margin-bottom: 40px;
+
+      transition: opacity 300ms;
+    }
+
+    .left-col__controls {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+
+      .control {
+        width: 16px;
+        height: 16px;
+        background-color: colors.$inactive_color;
+        margin-right: 8px;
+
+        transition: background-color 100ms;
+
+        &--selected {
+          @extend .control;
+          background-color: colors.$accent_color;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &__right-col {
+    flex-shrink: 0;
+    display: none;
+
+    align-items: center;
+
+    .right-col__image {
+      width: 100%;
+      height: auto;
+
+      transition: opacity 300ms;
+    }
+  }
+
+  &--in-transition {
+    @extend .landing-section;
+
+    .landing-section__left-col {
+      .left-col__caption {
+        opacity: 0;
+      }
+    }
+
+    .landing-section__right-col {
+      .right-col__image {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 720px) {
+  .landing-section {
+    &__left-col {
+      margin-right: 24px;
+
+      .left-col__header {
+        font-size: typography.$font_size_xl;
+      }
+
+      .left-col__caption {
+        font-size: typography.$font_size_xxl;
+        max-width: 480px;
+      }
+    }
+
+    &__right-col {
+      display: flex;
+
+      .right-col__image {
+        width: 320px;
+        height: 220px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .landing-section {
+    &__left-col {
+      .left-col__header {
+        font-size: typography.$font_size_xl;
+      }
+      .left-col__caption {
+        font-size: typography.$font_size_xxxl;
+        max-width: none;
+      }
+    }
+  }
+}
