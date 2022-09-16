@@ -1,6 +1,6 @@
-import LandingSection from './LandingSection'
-import CaptionSection from './CaptionSection'
-import ObjectivesSection from './ObjectivesSection'
-import SubscribeSection from './SubscribeSection'
+import LandingSection from './LandingSection/LandingSection'
+import CaptionSection from './CaptionSection/CaptionSection'
+import ObjectivesSection from './ObjectivesSection/ObjectivesSection'
+import SubscribeSection from './SubscribeSection/SubscribeSection'
 
 export { LandingSection, CaptionSection, ObjectivesSection, SubscribeSection }

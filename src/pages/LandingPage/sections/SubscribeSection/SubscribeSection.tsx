@@ -1,4 +1,4 @@
-import { Layout } from '../../../global/components'
+import { Layout } from '../../../../global/components'
 
 function SubscribeSection() {
   return <Layout>Subscribe:</Layout>

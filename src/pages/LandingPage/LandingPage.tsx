@@ -72,9 +72,7 @@ function LandingPage() {
           </CaptionSection>
         </SwapSection>
         <SwapSection modifier={sectionModifiers[2]}>
-          <CaptionSection>
-            <b>{copy.mission_of_dwebmd}</b>
-          </CaptionSection>
+          <CaptionSection>{copy.mission_of_dwebmd}</CaptionSection>
         </SwapSection>
         <SwapSection modifier={sectionModifiers[3]}>
           <CaptionSection>{copy.objectives}</CaptionSection>

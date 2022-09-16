@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
-import { Layout } from '../../../global/components'
+import { Layout } from '../../../../global/components'
 
-import './section.scss'
+import './caption_section.scss'
 
 function CaptionSection({ children }: { children?: ReactNode }) {
   return (

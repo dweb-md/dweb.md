@@ -1,0 +1,72 @@
+@use '../../../../global/styles/colors.scss' as colors;
+@use '../../../../global/styles/typography.scss' as typography;
+
+.objectives-section {
+  .objective {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    margin-bottom: 48px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &__text {
+      max-width: 600px;
+      font-size: typography.$font_size_l;
+      color: colors.$accent_color;
+    }
+
+    &__bullet {
+      flex-shrink: 0;
+      margin-right: 32px;
+
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+
+      background-color: colors.$accent_color;
+      color: #ffffff;
+      font-size: typography.$font_size_xxl;
+      font-weight: bold;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &--right {
+      @extend .objective;
+      justify-content: flex-end;
+
+      .objective__bullet {
+        margin-left: 40px;
+        margin-right: 0;
+      }
+
+      .objective__text {
+        text-align: right;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 720px) {
+  .objectives-section {
+    .objective__text {
+      font-size: typography.$font_size_xxl;
+    }
+
+    .objective__bullet {
+      width: 80px;
+      height: 80px;
+      font-size: typography.$font_size_xxxl;
+
+      margin-right: 40px;
+    }
+  }
+}
