@@ -1,0 +1,52 @@
+@use '../../../../global/styles/colors.scss' as colors;
+@use '../../../../global/styles/typography.scss' as typography;
+
+.subscribe-section {
+  color: colors.$accent_color;
+
+  &__title {
+    font-size: typography.$font_size_xl;
+    font-weight: bold;
+    margin-bottom: 24px;
+  }
+
+  &__subtitle {
+    font-size: typography.$font_size_xl;
+    margin-bottom: 32px;
+  }
+
+  &__social {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    .social-link {
+      margin-right: 24px;
+      border-radius: 50%;
+      border: 2px solid colors.$accent_color;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 720px) {
+  .subscribe-section {
+    color: #ffffff;
+
+    &__title {
+      font-size: typography.$font_size_xxl;
+      margin-bottom: 40px;
+    }
+
+    &__subtitle {
+      font-size: typography.$font_size_xxl;
+    }
+  }
+}

@@ -1,7 +1,24 @@
-import { Layout } from '../../../../global/components'
+import { useContext } from 'react'
+import { Icon } from '../../../../global/components'
+import { GlobalContext } from '../../../../global/contexts'
+import './subscribe_section.scss'
+
+const TELEGRAM_INVITE_LINK = 'https://t.me/+IA3xyp_C3tkyYjFk'
 
 function SubscribeSection() {
-  return <Layout>Subscribe:</Layout>
+  const { copy } = useContext(GlobalContext)
+
+  return (
+    <div className="subscribe-section layout">
+      <div className="subscribe-section__title">{copy.dweb_is_in_development}</div>
+      <div className="subscribe-section__subtitle">{copy.call_to_subscription}</div>
+      <div className="subscribe-section__social">
+        <div className="social-link" onClick={() => window.open(TELEGRAM_INVITE_LINK)}>
+          <Icon variant="telegram" />
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default SubscribeSection

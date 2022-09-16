@@ -1,18 +1,30 @@
-@use "../../styles/colors.scss" as colors;
+@use '../../styles/colors.scss' as colors;
 
 .nav-button {
-	font-weight: bold;
-	color: colors.$accent_color;
-	transition: color 200;
-	font-size: 14px;
-	padding: 8px 12px;
+  font-weight: bold;
+  color: colors.$accent_color;
+  transition: color 200;
+  font-size: 14px;
+  padding: 8px 12px;
 
-	&:hover {
-		cursor: pointer;
-		color: colors.$accent_color_light;
-	}
+  &:hover {
+    cursor: pointer;
+    color: colors.$accent_color_light;
+  }
 
-	&:active {
-		color: colors.$accent_color;
-	}
+  &:active {
+    color: colors.$accent_color;
+  }
+
+  &--dark {
+    color: #fff;
+
+    &:hover {
+      color: #eee;
+    }
+
+    &:active {
+      color: #fff;
+    }
+  }
 }

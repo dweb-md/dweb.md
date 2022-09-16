@@ -1,7 +1,20 @@
 @use '../../global/styles/colors.scss' as colors;
 
-.body {
-  background-color: colors.$background_main;
-  position: relative;
-  min-height: 100vh;
+.landing-page {
+  transition: background-color 300ms;
+
+  .body {
+    background-color: colors.$background_main;
+    transition: background-color 300ms;
+
+    position: relative;
+    min-height: 100vh;
+  }
+
+  &--dark {
+    background-color: colors.$accent_color;
+    .body {
+      background-color: colors.$accent_color;
+    }
+  }
 }

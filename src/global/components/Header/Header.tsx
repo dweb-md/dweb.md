@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { GlobalContext } from '../../contexts'
+import { GlobalContext, ThemeContext } from '../../contexts'
 import Layout from '../Layout/Layout'
 import NavButton from '../NavButton/NavButton'
 
@@ -10,27 +10,32 @@ type HeaderProps = {
 }
 
 // @todo add nav-related elements to a router/ folder
-type Paths = '/' | '/mission' | '/objectives' | '/news'
+type Paths = '/' | '/mission' | '/objectives' | '/community'
 
 const pathToSectionMapping = {
   '/': 0,
   '/mission': 1,
   '/objectives': 3,
-  '/news': 5
+  '/community': 5
 }
 
 function Header({ setActiveSection }: HeaderProps) {
   const { copy } = useContext(GlobalContext)
+  const { darkTheme } = useContext(ThemeContext)
 
   const onClickGoTo = (to: Paths) => () => setActiveSection(pathToSectionMapping[to])
 
+  const themeConfig = darkTheme
+    ? { class: 'header header--dark', logoSrc: '/img/dwebmd_logo_inv.svg' }
+    : { class: 'header', logoSrc: '/img/dwebmd_logo.svg' }
+
   return (
-    <div className="header">
+    <div className={themeConfig.class}>
       <Layout>
         <div className="header__contents">
           <img
             className="header__logo"
-            src="/img/dwebmd_logo.svg"
+            src={themeConfig.logoSrc}
             alt="logo"
             onClick={onClickGoTo('/')}
           />
@@ -38,7 +43,7 @@ function Header({ setActiveSection }: HeaderProps) {
             <NavButton text={copy.home} onClick={onClickGoTo('/')} />
             <NavButton text={copy.mission} onClick={onClickGoTo('/mission')} />
             <NavButton text={copy.objectives} onClick={onClickGoTo('/objectives')} />
-            <NavButton text={copy.news} onClick={onClickGoTo('/news')} />
+            <NavButton text={copy.community} onClick={onClickGoTo('/community')} />
           </div>
         </div>
       </Layout>

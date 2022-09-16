@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { GlobalContext } from '../../global/contexts'
+import { GlobalContext, ThemeContext } from '../../global/contexts'
 import { Header, SwapSection } from '../../global/components'
 import { View } from '../../global/types'
 import { LandingSection, CaptionSection, ObjectivesSection, SubscribeSection } from './sections'
@@ -32,6 +32,7 @@ function LandingPage() {
   const [offset, setOffset] = useState(0)
   const [activeSection, setActiveSection] = useState(0)
   const [scrollFrozen, setScrollFrozen] = useState(false)
+  const [darkTheme, setDarkTheme] = useState(false)
 
   // @todo simplify
   const onWheelHandler: React.WheelEventHandler = ({ deltaY }) => {
@@ -53,38 +54,47 @@ function LandingPage() {
     const newSectionModifiers = generateSectionModifiers(activeSection)
     setSectionModifiers(newSectionModifiers)
     setScrollFrozen(true)
+
+    setDarkTheme(activeSection === 5 && view === View.desktop)
+
     setTimeout(() => setScrollFrozen(false), config.SCROLL_FREEZE_DURATION)
   }, [activeSection])
 
+  useEffect(() => {
+    setDarkTheme(activeSection === 5 && view === View.desktop)
+  }, [view])
+
   return (
-    <div onWheel={onWheelHandler}>
-      <Header setActiveSection={setActiveSection} />
-      <div className="body">
-        <SwapSection
-          modifier={sectionModifiers[0]}
-          scrollClue={`${copy.mission_title_prefix} dweb.md`}
-        >
-          <LandingSection />
-        </SwapSection>
-        <SwapSection modifier={sectionModifiers[1]}>
-          <CaptionSection>
-            {copy.mission_title_prefix} <b>dweb.md</b>
-          </CaptionSection>
-        </SwapSection>
-        <SwapSection modifier={sectionModifiers[2]}>
-          <CaptionSection>{copy.mission_of_dwebmd}</CaptionSection>
-        </SwapSection>
-        <SwapSection modifier={sectionModifiers[3]}>
-          <CaptionSection>{copy.objectives}</CaptionSection>
-        </SwapSection>
-        <SwapSection modifier={sectionModifiers[4]}>
-          <ObjectivesSection />
-        </SwapSection>
-        <SwapSection modifier={sectionModifiers[5]}>
-          <SubscribeSection />
-        </SwapSection>
+    <ThemeContext.Provider value={{ darkTheme }}>
+      <div onWheel={onWheelHandler} className={`landing-page${darkTheme ? '--dark' : ''}`}>
+        <Header setActiveSection={setActiveSection} />
+        <div className="body">
+          <SwapSection
+            modifier={sectionModifiers[0]}
+            scrollClue={`${copy.mission_title_prefix} dweb.md`}
+          >
+            <LandingSection />
+          </SwapSection>
+          <SwapSection modifier={sectionModifiers[1]}>
+            <CaptionSection>
+              {copy.mission_title_prefix} <b>dweb.md</b>
+            </CaptionSection>
+          </SwapSection>
+          <SwapSection modifier={sectionModifiers[2]}>
+            <CaptionSection>{copy.mission_of_dwebmd}</CaptionSection>
+          </SwapSection>
+          <SwapSection modifier={sectionModifiers[3]}>
+            <CaptionSection>{copy.objectives}</CaptionSection>
+          </SwapSection>
+          <SwapSection modifier={sectionModifiers[4]}>
+            <ObjectivesSection />
+          </SwapSection>
+          <SwapSection modifier={sectionModifiers[5]}>
+            <SubscribeSection />
+          </SwapSection>
+        </div>
       </div>
-    </div>
+    </ThemeContext.Provider>
   )
 }
 
