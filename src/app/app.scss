@@ -1,6 +1,6 @@
 @use '../global/styles/colors.scss' as colors;
 @use '../global/styles/typography.scss' as typography;
-
+@use '../global/styles/media.scss' as media;
 * {
   margin: 0;
   padding: 0;
@@ -15,11 +15,7 @@ body {
   background-color: colors.$background_main;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-@media only screen and (min-width: 720px) {
+@media only screen and (min-width: media.$desktop_w_breakpoint) and (min-height: media.$desktop_h_breakpoint) {
   body {
     overflow: hidden;
   }

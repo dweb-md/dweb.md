@@ -1,5 +1,6 @@
 @use '../../../../global/styles/colors.scss' as colors;
 @use '../../../../global/styles/typography.scss' as typography;
+@use '../../../../global/styles/media.scss' as media;
 
 .objectives-section {
   .objective {
@@ -17,6 +18,8 @@
 
     &__text {
       max-width: 600px;
+      margin-right: 96px;
+
       font-size: typography.$font_size_l;
       color: colors.$accent_color;
     }
@@ -44,21 +47,30 @@
       justify-content: flex-end;
 
       .objective__bullet {
-        margin-left: 40px;
+        margin-left: 32px;
         margin-right: 0;
       }
 
       .objective__text {
         text-align: right;
+        margin-left: 96px;
+        margin-right: 0;
       }
     }
   }
 }
 
-@media only screen and (min-width: 720px) {
+@media only screen and (min-width: media.$desktop_w_breakpoint) and (min-height: media.$desktop_h_breakpoint) {
   .objectives-section {
     .objective__text {
       font-size: typography.$font_size_xxl;
+      margin-right: 120px;
+    }
+
+    &--right {
+      .objective__text {
+        margin-left: 120px;
+      }
     }
 
     .objective__bullet {

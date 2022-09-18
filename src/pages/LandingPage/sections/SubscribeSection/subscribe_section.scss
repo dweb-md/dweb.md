@@ -1,5 +1,6 @@
 @use '../../../../global/styles/colors.scss' as colors;
 @use '../../../../global/styles/typography.scss' as typography;
+@use '../../../../global/styles/media.scss' as media;
 
 .subscribe-section {
   color: colors.$accent_color;
@@ -36,7 +37,7 @@
   }
 }
 
-@media only screen and (min-width: 720px) {
+@media only screen and (min-width: media.$desktop_w_breakpoint) and (min-height: media.$desktop_h_breakpoint) {
   .subscribe-section {
     color: #ffffff;
 

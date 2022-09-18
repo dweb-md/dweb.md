@@ -1,3 +1,5 @@
+@use '../../../global/styles/media.scss' as media;
+
 .swap-section {
   position: relative;
 
@@ -10,10 +12,9 @@
   }
 }
 
-@media only screen and (min-width: 720px) {
+@media only screen and (min-width: media.$desktop_w_breakpoint) and (min-height: media.$desktop_h_breakpoint) {
   .swap-section {
     width: 100%;
-    min-height: 100vh;
     position: absolute;
     top: 0;
 
@@ -28,6 +29,7 @@
         animation-duration: 7s;
         animation-delay: 3s;
         animation-iteration-count: 1;
+        animation-timing-function: ease-out;
       }
 
       .footer__icon {
@@ -35,6 +37,7 @@
         animation-duration: 6s;
         animation-delay: 3.5s;
         animation-iteration-count: 1;
+        animation-timing-function: ease-out;
       }
     }
 
@@ -97,10 +100,14 @@
   }
   10% {
     opacity: 1;
+    transform: translateY(-3px);
+  }
+  40% {
+    transform: translateY(3px);
   }
   90% {
     opacity: 1;
-    transform: translateY(0px);
+    transform: translateY(-3px);
   }
   100% {
     opacity: 0;

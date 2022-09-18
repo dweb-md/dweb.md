@@ -1,11 +1,16 @@
-import { useContext, useEffect, useState, useRef, RefObject } from 'react'
+import { useContext, useEffect, useState, useRef } from 'react'
 import { GlobalContext, ThemeContext } from '../../global/contexts'
 import { Header, SwapSection } from '../../global/components'
 import { View } from '../../global/types'
-import { LandingSection, CaptionSection, ObjectivesSection, SubscribeSection } from './sections'
 
 import './landing_page.scss'
-import { config, determineActiveSection, generateSectionModifiers, getTopOffset } from './utils'
+import {
+  config,
+  determineActiveSection,
+  generateSectionModifiers,
+  generateSectionConfigs,
+  getTopOffset
+} from './utils'
 
 function LandingPage() {
   const { copy, view } = useContext(GlobalContext)
@@ -20,25 +25,7 @@ function LandingPage() {
     .fill(0)
     .map(() => useRef<HTMLDivElement>(null))
 
-  const sections = [
-    {
-      scrollClue: `${copy.mission_title_prefix} dweb.md`,
-      children: <LandingSection />
-    },
-    {
-      children: (
-        <CaptionSection key="caption_section_1">
-          {copy.mission_title_prefix} <b>dweb.md</b>
-        </CaptionSection>
-      )
-    },
-    {
-      children: <CaptionSection key="caption_section_2">{copy.mission_of_dwebmd}</CaptionSection>
-    },
-    { children: <CaptionSection key="caption_section_3">{copy.objectives}</CaptionSection> },
-    { children: <ObjectivesSection /> },
-    { children: <SubscribeSection /> }
-  ]
+  const sections = generateSectionConfigs(copy)
 
   useEffect(() => {
     setOffset(300)
@@ -54,7 +41,8 @@ function LandingPage() {
 
   useEffect(() => {
     setDarkTheme(activeSection === 5 && view === View.desktop)
-    const offset = window.innerWidth < 720 ? getTopOffset(refs[activeSection]) : 0
+
+    const offset = view === View.mobile ? getTopOffset(refs[activeSection]) : 0
     window.scroll(0, offset)
   }, [view])
 
@@ -74,9 +62,20 @@ function LandingPage() {
     }
   }
 
-  function navHandler(toSection: number) {
+  function goToHandler(toSection: number) {
+    // set smooth behavior before navigating to section
+    if (view === View.mobile) document.documentElement.style.scrollBehavior = 'smooth'
+
     setActiveSection(toSection)
-    if (view === View.mobile) window.scroll(0, getTopOffset(refs[toSection]))
+
+    if (view === View.mobile) {
+      window.scroll(0, getTopOffset(refs[toSection]))
+
+      // reset scroll behavior
+      setTimeout(() => {
+        document.documentElement.style.scrollBehavior = 'initial'
+      }, 1000)
+    }
   }
 
   function renderSections() {
@@ -95,7 +94,7 @@ function LandingPage() {
   return (
     <ThemeContext.Provider value={{ darkTheme }}>
       <div onWheel={onWheelHandler} className={`landing-page${darkTheme ? '--dark' : ''}`}>
-        <Header navHandler={navHandler} />
+        <Header goToHandler={goToHandler} />
         <div className="body">{renderSections()}</div>
       </div>
     </ThemeContext.Provider>

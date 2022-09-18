@@ -1,5 +1,6 @@
 @use '../../../../global/styles/colors.scss' as colors;
 @use '../../../../global/styles/typography.scss' as typography;
+@use '../../../../global/styles/media.scss' as media;
 
 .caption {
   font-size: typography.$font_size_xl;
@@ -7,7 +8,7 @@
   text-align: center;
 }
 
-@media only screen and (min-width: 720px) {
+@media only screen and (min-width: media.$desktop_w_breakpoint) {
   .caption {
     font-size: typography.$font_size_xxl;
   }

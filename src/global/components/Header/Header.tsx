@@ -6,10 +6,10 @@ import NavButton from '../NavButton/NavButton'
 import './header.scss'
 
 type HeaderProps = {
-  navHandler: (toSection: number) => void
+  goToHandler: (toSection: number) => void
 }
 
-function Header({ navHandler }: HeaderProps) {
+function Header({ goToHandler }: HeaderProps) {
   const { copy } = useContext(GlobalContext)
   const { darkTheme } = useContext(ThemeContext)
 
@@ -26,7 +26,7 @@ function Header({ navHandler }: HeaderProps) {
 
   function renderNavButtons() {
     return navConfig.map(({ text, to }, index) => (
-      <NavButton key={`nav_button_${index}`} text={text} onClick={() => navHandler(to)} />
+      <NavButton key={`nav_button_${index}`} text={text} onClick={() => goToHandler(to)} />
     ))
   }
 
@@ -38,7 +38,7 @@ function Header({ navHandler }: HeaderProps) {
             className="header__logo"
             src={themeConfig.logoSrc}
             alt="logo"
-            onClick={() => navHandler(0)}
+            onClick={() => goToHandler(0)}
           />
           <div className="header__nav">{renderNavButtons()}</div>
         </div>

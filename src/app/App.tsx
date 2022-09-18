@@ -11,7 +11,7 @@ function App() {
   const [language] = useState<Language>(defaultLanguage)
   const [siteCopy, setCopy] = useState<typeof copy[Language]>(copy[language])
 
-  const defaultView = window.innerWidth < 720 ? View.mobile : View.desktop
+  const defaultView = isMobileView() ? View.mobile : View.desktop
   const [view, setView] = useState(defaultView)
 
   useEffect(() => {
@@ -19,7 +19,7 @@ function App() {
   }, [language])
 
   window.addEventListener('resize', () => {
-    setView(window.innerWidth < 720 ? View.mobile : View.desktop)
+    setView(isMobileView() ? View.mobile : View.desktop)
   })
 
   return (
@@ -31,6 +31,10 @@ function App() {
       </HashRouter>
     </GlobalContext.Provider>
   )
+}
+
+function isMobileView() {
+  return window.innerWidth < 720 || window.innerHeight < 560
 }
 
 export default App

@@ -1,5 +1,6 @@
 @use '../../../../global/styles/typography.scss' as typography;
 @use '../../../../global/styles/colors.scss' as colors;
+@use '../../../../global/styles/media.scss' as media;
 
 .landing-section {
   display: flex;
@@ -88,7 +89,7 @@
   }
 }
 
-@media only screen and (min-width: 720px) {
+@media only screen and (min-width: media.$desktop_w_breakpoint) and (min-height: media.$desktop_h_breakpoint) {
   .landing-section {
     &__left-col {
       margin-right: 24px;
@@ -114,7 +115,7 @@
   }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: media.$desktop_w_breakpoint_l) {
   .landing-section {
     &__left-col {
       .left-col__header {
