@@ -1,40 +1,33 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../../../../global/contexts'
 
 import './landing_section.scss'
+import { generateCardsConfig, getNextCardNumber, CARD_ADVANCE_INTERVAL } from './utils'
 
 function LandingSection() {
   const { copy } = useContext(GlobalContext)
   const [inTransition, setInTransition] = useState(false)
   const [cardNumber, setCardNumber] = useState(0)
 
-  const cardsConfig = [
-    {
-      caption: copy.hypothesis_one,
-      img: { src: '/img/power_to_the_peers.svg', alt: 'power to the peers' }
-    },
-    {
-      caption: copy.hypothesis_two,
-      img: { src: '/img/power_to_the_peers.svg', alt: 'power to the peers' }
-    },
-    {
-      caption: copy.hypothesis_three,
-      img: { src: '/img/power_to_the_peers.svg', alt: 'power to the peers' }
-    },
-    {
-      caption: copy.hypothesis_four,
-      img: { src: '/img/power_to_the_peers.svg', alt: 'power to the peers' }
-    },
-    {
-      caption: copy.hypothesis_five,
-      img: { src: '/img/power_to_the_peers.svg', alt: 'power to the peers' }
-    }
-  ]
+  const [timeoutId, setTimeoutId] = useState(-1)
 
-  function transitionToCard(index: number) {
-    setInTransition(true)
-    setTimeout(() => setCardNumber(index), 400)
-    setTimeout(() => setInTransition(false), 500)
+  const cardsConfig = generateCardsConfig(copy)
+
+  useEffect(() => {
+    if (timeoutId === -1) setAdvanceCardTimeout(getNextCardNumber(cardNumber))
+  }, [])
+
+  function handleMouseEnter(e: any) {
+    e.preventDefault()
+
+    window.clearTimeout(timeoutId)
+    setTimeoutId(0)
+  }
+
+  function handleMouseLeave(e: any) {
+    e.preventDefault()
+
+    if (timeoutId === 0) setAdvanceCardTimeout(getNextCardNumber(cardNumber))
   }
 
   function renderControls() {
@@ -49,9 +42,29 @@ function LandingSection() {
       ))
   }
 
+  function transitionToCard(index: number) {
+    setInTransition(true)
+    setTimeout(() => setCardNumber(index), 400)
+    setTimeout(() => setInTransition(false), 500)
+  }
+
+  function setAdvanceCardTimeout(nextCardId: number) {
+    setTimeoutId(
+      window.setTimeout(() => {
+        setTimeoutId(0)
+        transitionToCard(nextCardId)
+        setAdvanceCardTimeout(getNextCardNumber(nextCardId))
+      }, CARD_ADVANCE_INTERVAL)
+    )
+  }
+
   return (
     <div className={`landing-section${inTransition ? '--in-transition' : ''} layout`}>
-      <div className="landing-section__left-col">
+      <div
+        className="landing-section__left-col"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <div className="left-col__header">{copy.what_if}</div>
         <div className="left-col__caption">{cardsConfig[cardNumber].caption}</div>
         <div className="left-col__controls">{renderControls()}</div>
