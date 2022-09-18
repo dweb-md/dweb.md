@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from 'react'
+import { forwardRef, ReactNode, useContext, Ref } from 'react'
 import { GlobalContext, ThemeContext } from '../../contexts'
 import { View } from '../../types'
 import './swap_section.scss'
@@ -10,7 +10,12 @@ type SwapSectionProps = {
   scrollClue?: ReactNode
 }
 
-function SwapSection({ children, modifier, scrollClue }: SwapSectionProps) {
+const SwapSection = forwardRef<HTMLDivElement, SwapSectionProps>(function SwapSectioReffed(
+  props: SwapSectionProps,
+  ref?: Ref<HTMLDivElement>
+) {
+  const { children, modifier, scrollClue } = props
+
   const { view } = useContext(GlobalContext)
   const { darkTheme } = useContext(ThemeContext)
 
@@ -18,7 +23,7 @@ function SwapSection({ children, modifier, scrollClue }: SwapSectionProps) {
   const themeModifier = darkTheme ? 'swap-section--dark' : ''
 
   return (
-    <div className={`swap-section swap-section--${modifier} ${themeModifier}`}>
+    <div ref={ref} className={`swap-section swap-section--${modifier} ${themeModifier}`}>
       <div className="swap-section__content">{children}</div>
       {shouldRenderFooter ? (
         <div className="swap-section__footer">
@@ -28,6 +33,6 @@ function SwapSection({ children, modifier, scrollClue }: SwapSectionProps) {
       ) : null}
     </div>
   )
-}
+})
 
 export default SwapSection

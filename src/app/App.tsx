@@ -20,9 +20,6 @@ function App() {
 
   window.addEventListener('resize', () => {
     setView(window.innerWidth < 720 ? View.mobile : View.desktop)
-
-    // fix viewport position after small to large screen resize
-    if (window.innerWidth >= 720) window.scroll(0, 0)
   })
 
   return (

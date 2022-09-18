@@ -15,6 +15,10 @@ body {
   background-color: colors.$background_main;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @media only screen and (min-width: 720px) {
   body {
     overflow: hidden;
