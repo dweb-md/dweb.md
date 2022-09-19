@@ -10,6 +10,8 @@
 
   background-color: colors.$background_main;
 
+  transition: top 300ms;
+
   &__contents {
     display: flex;
     flex-direction: column;
@@ -56,6 +58,10 @@
         }
       }
     }
+  }
+
+  &--hidden {
+    top: -140px;
   }
 }
 

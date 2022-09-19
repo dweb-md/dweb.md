@@ -1,21 +1,25 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { GlobalContext, ThemeContext } from '../../contexts'
+import { View } from '../../types'
 import Layout from '../Layout/Layout'
 import NavButton from '../NavButton/NavButton'
 
 import './header.scss'
+
+const LIGHT_THEME_LOGO = '/img/dwebmd_logo.svg'
+const DARK_THEME_LOGO = '/img/dwebmd_logo_inv.svg'
 
 type HeaderProps = {
   goToHandler: (toSection: number) => void
 }
 
 function Header({ goToHandler }: HeaderProps) {
-  const { copy } = useContext(GlobalContext)
+  const { copy, view } = useContext(GlobalContext)
   const { darkTheme } = useContext(ThemeContext)
+  const [scrollPosition, setScrollPosition] = useState(window.scrollY)
+  const [hidden, setHidden] = useState(false)
 
-  const themeConfig = darkTheme
-    ? { class: 'header header--dark', logoSrc: '/img/dwebmd_logo_inv.svg' }
-    : { class: 'header', logoSrc: '/img/dwebmd_logo.svg' }
+  const logoSrc = darkTheme ? DARK_THEME_LOGO : LIGHT_THEME_LOGO
 
   const navConfig = [
     { text: copy.home, to: 0 },
@@ -24,6 +28,18 @@ function Header({ goToHandler }: HeaderProps) {
     { text: copy.community, to: 5 }
   ]
 
+  window.addEventListener('scroll', () => {
+    setHidden(scrollPosition - window.scrollY < 0)
+    setScrollPosition(window.scrollY)
+  })
+
+  function getClassName() {
+    let className = 'header'
+    if (darkTheme) className += ' header--dark'
+    if (view === View.mobile && hidden) className += ' header--hidden'
+    return className
+  }
+
   function renderNavButtons() {
     return navConfig.map(({ text, to }, index) => (
       <NavButton key={`nav_button_${index}`} text={text} onClick={() => goToHandler(to)} />
@@ -31,15 +47,10 @@ function Header({ goToHandler }: HeaderProps) {
   }
 
   return (
-    <div className={themeConfig.class}>
+    <div className={getClassName()}>
       <Layout>
         <div className="header__contents">
-          <img
-            className="header__logo"
-            src={themeConfig.logoSrc}
-            alt="logo"
-            onClick={() => goToHandler(0)}
-          />
+          <img className="header__logo" src={logoSrc} alt="logo" onClick={() => goToHandler(0)} />
           <div className="header__nav">{renderNavButtons()}</div>
         </div>
       </Layout>
