@@ -7,26 +7,26 @@ function generateCardsConfig(localization: typeof copy.ro) {
   return [
     {
       caption: localization.hypothesis_one,
-      img: { src: '/img/landing_power_to_the_peers.svg', alt: 'power to the peers' }
+      img: { src: './img/landing_power_to_the_peers.svg', alt: 'power to the peers' }
     },
     {
       caption: localization.hypothesis_two,
-      img: { src: '/img/landing_comp_econ.svg', alt: 'native economic component' }
+      img: { src: './img/landing_comp_econ.svg', alt: 'native economic component' }
     },
     {
       caption: localization.hypothesis_three,
-      img: { src: '/img/landing_sec_n_privacy.svg', alt: 'security and privacy by default' }
+      img: { src: './img/landing_sec_n_privacy.svg', alt: 'security and privacy by default' }
     },
     {
       caption: localization.hypothesis_four,
       img: {
-        src: '/img/landing_single_point_of_failure.svg',
+        src: './img/landing_single_point_of_failure.svg',
         alt: 'no more single point of failure'
       }
     },
     {
       caption: localization.hypothesis_five,
-      img: { src: '/img/landing_transparency.svg', alt: 'transparent web services' }
+      img: { src: './img/landing_transparency.svg', alt: 'transparent web services' }
     }
   ]
 }

@@ -6,8 +6,8 @@ import NavButton from '../NavButton/NavButton'
 
 import './header.scss'
 
-const LIGHT_THEME_LOGO = '/img/dwebmd_logo.svg'
-const DARK_THEME_LOGO = '/img/dwebmd_logo_inv.svg'
+const LIGHT_THEME_LOGO = './img/dwebmd_logo.svg'
+const DARK_THEME_LOGO = './img/dwebmd_logo_inv.svg'
 
 type HeaderProps = {
   goToHandler: (toSection: number) => void

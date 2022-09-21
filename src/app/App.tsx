@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { HashRouter, Route, Routes } from 'react-router-dom'
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { copy, defaultLanguage, Language } from '../global/localization'
 import { GlobalContext } from '../global/contexts'
 import { LandingPage } from '../pages'
@@ -26,7 +26,8 @@ function App() {
     <GlobalContext.Provider value={{ language, copy: siteCopy, view }}>
       <HashRouter>
         <Routes>
-          <Route path="*" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </HashRouter>
     </GlobalContext.Provider>
