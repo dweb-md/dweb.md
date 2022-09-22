@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { GlobalContext, ThemeContext } from '../../contexts'
 import { View } from '../../types'
 import Layout from '../Layout/Layout'
-import NavButton from '../NavButton/NavButton'
+import { NavButton, ImageLoader } from '..'
 
 import './header.scss'
 
@@ -50,7 +50,9 @@ function Header({ goToHandler }: HeaderProps) {
     <div className={getClassName()}>
       <Layout>
         <div className="header__contents">
-          <img className="header__logo" src={logoSrc} alt="logo" onClick={() => goToHandler(0)} />
+          <div className="header__logo" onClick={() => goToHandler(0)}>
+            <ImageLoader src={logoSrc} alt="logo" />
+          </div>
           <div className="header__nav">{renderNavButtons()}</div>
         </div>
       </Layout>

@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
+import { ImageLoader } from '../../../../global/components'
 import { GlobalContext } from '../../../../global/contexts'
 
 import './landing_section.scss'
@@ -70,7 +71,9 @@ function LandingSection() {
         <div className="left-col__controls">{renderControls()}</div>
       </div>
       <div className="landing-section__right-col">
-        <img className="right-col__image" {...cardsConfig[cardNumber].img} />
+        <div className="right-col__image">
+          <ImageLoader {...cardsConfig[cardNumber].img} />
+        </div>
       </div>
     </div>
   )
