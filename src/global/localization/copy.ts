@@ -11,9 +11,9 @@ const copy = {
     hypothesis_four: `Sistemele nu ar mai ieși din funcțiune din cauza unei singure dependențe?`,
     hypothesis_five: `Oricine ar putea presta servicii Web într-un mod echitabil și transparent?`,
     mission_title_prefix: 'Misiunea la',
-    mission_of_dwebmd: `Mobilizarea talentelor și resurselor pentru dezvoltarea Web-ului decentralizat în Moldova`,
+    mission_of_dwebmd: `Mobilizarea talentelor și resurselor pentru dezvoltarea Web-ului descentralizat în Moldova`,
     objective_one: 'De educat o nouă generație dweb-conștientă de profesionali în Moldova',
-    objective_two: 'De aplicat pe larg Web-ul decentralizat, de la divertisment la guvernare',
+    objective_two: 'De aplicat pe larg Web-ul descentralizat, de la divertisment la guvernare',
     objective_three: 'De dezvoltat Internetul viitorului alături de comunitatea mondială',
     dweb_is_in_development: 'dweb.md e în proces activ de dezvoltare',
     call_to_subscription: `Alătură-te comunității, pentru a afla cum poți contribui la dezvoltarea proiectului`
