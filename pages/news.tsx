@@ -1,20 +1,19 @@
 import { GetServerSidePropsContext } from 'next'
 import fs from 'fs'
-import ArticleLayout from '../components/article'
 import Header from '../components/header'
+import ArticleLayout from '../components/article'
 import Footer from '../components/footer'
 import GlobalHead from './head'
 
-type HomePageProps = {
+type NewsPageProps = {
   content: string
   joinLink: string
 }
 
-export default function Home(props: HomePageProps) {
+export default function News(props: NewsPageProps) {
   return (
     <>
-      <GlobalHead title="Dweb.md | Acasă" />
-
+      <GlobalHead title="Dweb.md | Noutăți" />
       <Header joinLink={props.joinLink} />
       <div className="page-layout">
         <ArticleLayout content={props.content} />
@@ -26,8 +25,8 @@ export default function Home(props: HomePageProps) {
 
 export async function getServerSideProps(
   context: GetServerSidePropsContext
-): Promise<{ props: HomePageProps }> {
-  const content = fs.readFileSync('./articles/ro/home.html').toString()
+): Promise<{ props: NewsPageProps }> {
+  const content = fs.readFileSync('./articles/ro/news.html').toString()
   const { joinLink } = JSON.parse(
     fs.readFileSync('./config/config.json').toString()
   )

@@ -1,0 +1,7 @@
+.page-layout {
+  @apply flex flex-col min-h-screen;
+
+  main {
+    @apply flex-grow;
+  }
+}

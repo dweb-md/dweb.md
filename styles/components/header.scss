@@ -1,0 +1,115 @@
+$header-height: 72px;
+
+.header {
+  @apply text-slate-100 bg-sky-900 fixed top-0 left-0 z-40 w-screen hidden md:block;
+
+  .header__container {
+    @apply mx-auto text-slate-100 bg-sky-900 py-4 flex flex-row justify-between items-center px-10 max-w-screen-2xl;
+
+    .logo {
+      @apply w-auto h-9 flex-shrink-0;
+
+      img {
+        @apply w-auto h-full;
+      }
+    }
+
+    & .nav {
+      @apply justify-self-center flex flex-row;
+
+      a {
+        @apply px-2 py-2 mx-1 font-medium hover:text-slate-200;
+      }
+    }
+
+    & .join-button {
+      @apply px-6 py-2 text-sm font-medium rounded border-2 border-slate-100 whitespace-nowrap flex-shrink-0 hover:bg-sky-800 active:bg-sky-900;
+    }
+  }
+}
+
+.mobile-header {
+  @apply md:hidden fixed top-0 left-0;
+
+  &__container {
+    @apply z-40 relative flex flex-row items-center w-screen bg-sky-900 text-slate-100 py-4 px-10;
+    height: $header-height;
+
+    .logo {
+      @apply w-auto h-9 inline-block;
+
+      img {
+        @apply w-auto h-full;
+      }
+    }
+  }
+
+  .overlay {
+    @apply fixed left-0 top-0 bg-stone-900 w-screen h-screen opacity-0 z-20;
+
+    transition: opacity 0.2s;
+  }
+
+  &__menu {
+    @apply z-30 relative fixed bg-sky-900 text-slate-100 py-4 px-10;
+
+    top: 0;
+    transform: translateY(-202px);
+    opacity: 0;
+    transition: transform ease-out 0.3s, opacity ease-out 0.2s;
+
+    a {
+      @apply block pb-4 border-b border-sky-100 hover:text-slate-300 pt-4 px-2;
+
+      &:last-child {
+        @apply border-b-0;
+      }
+    }
+  }
+
+  &__button {
+    @apply p-1 w-9 h-9 fixed top-5 right-4 z-40 hover:cursor-pointer;
+
+    .button-icon {
+      @apply relative;
+
+      .button-line {
+        @apply block h-1 w-full mb-1.5 bg-slate-100;
+
+        opacity: 1;
+        transition: opacity 0.4s, transform 0.3s;
+
+        &:last-child {
+          @apply mb-0;
+        }
+      }
+    }
+  }
+
+  &--unfold {
+    .mobile-header__menu {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+
+    .mobile-header__button {
+      .button-line {
+        &:nth-child(1) {
+          transform: translate(0px, 11px) rotateZ(45deg);
+        }
+
+        &:nth-child(2) {
+          @apply opacity-0;
+        }
+
+        &:nth-child(3) {
+          transform: translate(0px, -9px) rotateZ(-45deg);
+        }
+      }
+    }
+
+    .overlay {
+      @apply opacity-80;
+    }
+  }
+}
