@@ -1,0 +1,42 @@
+@use './header.scss' as header;
+
+.article-layout {
+  @apply flex flex-row;
+
+  min-height: 100%;
+  margin-top: header.$header-height;
+
+  aside {
+    @apply hidden lg:block flex-shrink-0 relative;
+
+    background-color: #eff3f5;
+    width: 400px;
+
+    .aside-container {
+      @apply pl-10 pr-6 pt-16 pb-16 sticky top-16;
+
+      max-height: calc(100vh - header.$header-height);
+      overflow-y: scroll;
+    }
+
+    a {
+      @apply block font-medium mb-2 text-stone-900 hover:text-sky-700 hover:cursor-pointer;
+
+      &.active {
+        @apply text-sky-700;
+      }
+    }
+
+    .h1 {
+      @apply text-lg;
+    }
+
+    .h2 {
+      @apply text-base ml-6;
+    }
+  }
+
+  article {
+    @apply grow px-10 lg:px-16 pt-16 mb-20 max-w-screen-xl lg:mx-auto 2xl:pr-96;
+  }
+}
